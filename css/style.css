@@ -1,0 +1,150 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap');
+
+* { margin:0; padding:0; box-sizing:border-box; }
+li { list-style: none; }
+a { text-decoration:none; }
+
+main { width:100%; height:100vh; background:#333; 
+        display:flex; /* header와 section을 좌우배치 하기 위해 설정*/ }
+
+main header { width:20%; padding:10vh 6vw;
+    display:flex; 
+    flex-wrap:wrap; /*부모영역이 요소들의 가로 합보다 작았을때 세로로 정렬 */
+    align-content:space-between;  /*세로축 상단 하단 양끝에 요소 배치*/
+    justify-content:center;   /*가로축은 중앙으로 배치*/
+    z-index:3; /*section, aside보다 위에 배치하기 위해 3지정*/
+}
+
+main header h1 { font-size:0; color:#fff; text-align:center; }
+main header h1 i { font-size:5vw; margin-bottom:13px;  } 
+main header h1 span { font:normal 0.8vw/1 "arial"; }
+main header address { font: normal 12px/1.2 "arial"; /*font축약형, 세부요소들이 다 있어야됨*/
+    color:#838383;}
+
+main nav { 
+    position:absolute; 
+    top:10vh; 
+    right:5vw;
+    z-index:3; }
+main nav ul { display:flex; }
+main nav li {}
+main nav a { 
+    font-size: 20px; 
+    color:#bbb; 
+    margin-right:1.6vw;}
+
+main section { 
+    position:relative; 
+    display:flex; 
+    width:80%; 
+    margin-top:15vh; 
+    z-index:1;}
+main section article { position:relative;
+    padding:70px 40px 100px;
+    z-index:1;
+    flex:1; /*모든 article의 요소의 너비를 동등하게 적용*/ 
+    transition:opacity 1s,flex 1s; 
+    cursor:pointer; 
+    opacity:.6;}
+main section article::before {
+    content:'';
+    width:80%;
+    height:95%;
+    background:#8a8989;
+    border:1px solid #000;
+    position:absolute;
+    top:0;
+    left:-200px;
+    opacity:0; 
+    transition:1s;
+    z-index:-1
+}
+main section article .inner { 
+    width:100%; 
+    height:100%; 
+    display:flex; 
+    flex-wrap:wrap; 
+    align-content:space-between;}
+main section article .inner .txt { width:100%; transition:1s;}
+main section article .inner .txt h2 {
+    font:normal 2vw/1 'Mochiy Pop P One', sans-serif;
+    color:#fff;
+    padding-top:70px;
+    margin-bottom:40px;
+    transition:1}
+main section article .inner .txt h2:after {
+    display:block; 
+    content:'';
+    width:40px; 
+    height:2px ;
+    background:#bbb;
+    margin-top:20px;
+    transition:1.5s;}
+
+main section article .inner .txt p { 
+    font:normal 14px/1.2 'Arial', sans-serif ;
+    color:#999;  }
+
+main section article .inner figure { 
+    width:100%;
+    height:15vh;
+    overflow:hidden; 
+    filter:saturate(20%);
+    box-shadow:5px 5px 20px rgba(0,0,0,.3);
+    transition:1.5s;
+    }
+main section article .inner figure video{
+    width:100%;
+    height:100%; 
+    object-fit: cover;
+    transform:scale(1.1);/*영상 가장자리 여백이 나오지 않게*/;transform-origin:left center;}
+
+    /**/
+main section article:hover { flex:1.5; z-index:5; opacity:1; }
+main section article:hover::before { left:0; opacity:1; }
+
+main section article:hover .inner .txt { width:75%; }
+main section article:hover .txt h2 { font-size:5vw; padding-top:0px; }
+main section article:hover .txt h2:after { width:120px;  background:orange;}
+
+main section article:hover .inner figure { height:25vh; filter:saturate(120%); transform:translateY(3vh)}
+
+
+
+
+main aside {
+    position:absolute; 
+    top:0; 
+    left:-100%; 
+    width:100%; 
+    height:100vh; 
+    background:teal;
+    z-index:2 ;
+    padding:20vh 7vw 14vh 20vw;
+    display:flex;
+    justify-content:space-between;
+    opacity:0;
+    transition:1s;}
+main aside .txt {
+    width:25%; 
+    height:100%; }
+main aside .txt h2 {
+    font:normal 6vw/1 'Mochiy Pop P One', sans-serif;
+    color:#ddd;
+    margin-bottom:20px;}
+main aside .txt p {
+    font:normal 1.2vw/1.2 'Arial', sans-serif ;
+    color:#999;
+    padding-bottom:60px;}
+main aside .txt span {
+    color:orange;
+    cursor:pointer;}
+
+main aside figure {width:72%;height:100%; }
+main aside figure video{width:100%; height:100%;object-fit: cover;}
+
+main aside.on {
+    left:0;
+    opacity: 1;
+}
